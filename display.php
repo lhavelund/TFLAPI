@@ -14,7 +14,7 @@ $params 	= 'StopPointName=Darlaston%20Road';
 // Establish requested return content
 $returnlist	= 'StopID,StopPointName,LineID,DestinationName,DirectionID,EstimatedTime';
 // Set API URL
-$callurl 	= 'http://countdown.api.tfl.gov.uk/interfaces/ura/instant_V1?' . $params . 'returnlist=' . $returnlist;
+$callurl 	= 'http://countdown.api.tfl.gov.uk/interfaces/ura/instant_V1?' . $params . '&returnlist=' . $returnlist;
 
 // Acquire data.
 $data = file_get_contents($callurl);
