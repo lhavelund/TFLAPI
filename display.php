@@ -1,8 +1,13 @@
 <?php
 
-// Public Domain below.
-// By Lasse Havelund <lasse@havelund.org>
-// v000.000.000.021
+/* 	This code is public domain.
+	Written by Lasse Havelund <lasse@havelund.org>
+	as an attempt to use the TFL API with PHP,
+	uploaded to Github to discourage anyone from
+	being as terrible at coding as I am. Enjoy!
+
+	v1.0.2
+*/
 
 // Acquire data
 
@@ -58,7 +63,7 @@ usort($stops, "sortShitOut");
 				echo '<h3>Buses towards Tooting Broadway</h3>';
 				echo '<table class="table"><tr><th id="col1">Line</th><th id="col2">Destination</th><th id="col3">Arrival</th></tr>';
 				foreach($stops as $entries) { // Display buses
-					if($entries[1] == 'Darlaston Road' && $entries[4] == 1) {	// 1 = Towards Tooting, 2 = Towards Kingston
+					if($entries[1] == 'Darlaston Road' && $entries[4] == 1) {	// 1 = Towards Tooting
 						echo '<tr>' . "\n";
 						echo '<td>' . $entries[3] . '</td>';
 						echo '<td>' . $entries[5] . '</td>';
@@ -95,7 +100,7 @@ usort($stops, "sortShitOut");
 				echo '<h3>Buses towards Kingston</h3>';
 				echo '<table class="table"><tr><th id="col1">Line</th><th id="col2">Destination</th><th id="col3">Arrival</th></tr>';
 				foreach($stops as $entries) { // Display buses
-					if($entries[1] == 'Darlaston Road' && $entries[4] == 2) {	// 1 = Towards Tooting, 2 = Towards Kingston
+					if($entries[1] == 'Darlaston Road' && $entries[4] == 2) {	// 2 = Towards Kingston
 						echo '<tr>' . "\n";
 						echo '<td>' . $entries[3] . '</td>';
 						echo '<td>' . $entries[5] . '</td>';
@@ -103,14 +108,14 @@ usort($stops, "sortShitOut");
 						// Time calculation
 
 						$now = time();
-						$realTimeStamp = 0.001 * $entries[6]; 		// Times are multiplied by 1,000 for some reason.
-						$timeDiff = $realTimeStamp - $now; 			// Get difference between now and due time.
-						$timeDiffMins = round($timeDiff/60, 0); 	// Round to nearest minute
-						if($timeDiffMins == 0) { 					// If less than half a minute (in theory)...
-							$timeDiffMins = 'due';					// ... set as due.
+						$realTimeStamp = 0.001 * $entries[6];
+						$timeDiff = $realTimeStamp - $now;
+						$timeDiffMins = round($timeDiff/60, 0);
+						if($timeDiffMins == 0) {
+							$timeDiffMins = 'due';
 						}
 						else {
-							$timeDiffMins = $timeDiffMins . 'min';	// If not due, add "min" suffix to indicate minutes
+							$timeDiffMins = $timeDiffMins . 'min';
 						}
 						echo '<td>' . $timeDiffMins . '</td>';
 						echo '</tr>';
