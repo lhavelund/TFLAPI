@@ -9,9 +9,15 @@
 	v1.0.2
 */
 
-// Acquire data
+// Establish API parameters
+$params 	= 'StopPointName=Darlaston%20Road';
+// Establish requested return content
+$returnlist	= 'StopID,StopPointName,LineID,DestinationName,DirectionID,EstimatedTime';
+// Set API URL
+$callurl 	= 'http://countdown.api.tfl.gov.uk/interfaces/ura/instant_V1?' . $params . 'returnlist=' . $returnlist;
 
-$data = file_get_contents('http://countdown.api.tfl.gov.uk/interfaces/ura/instant_V1?StopPointName=Darlaston%20Road&returnlist=StopID,StopPointName,LineID,DestinationName,DirectionID,EstimatedTime');
+// Acquire data.
+$data = file_get_contents($callurl);
 
 // Remove newlines
 $arrayfied = explode("\n", $data);
