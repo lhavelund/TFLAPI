@@ -38,20 +38,6 @@ usort($stops, "sortShitOut");
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Buses from Darlaston Road</title>
-<!--
-	<style type="text/css">
-	html { font-family: "Verdana", "Tahoma", sans-serif; font-size: 0.9em; }
-	body { width: 40%; margin: 0 auto; }
-	table { width: 80%; margin: 0 auto; }
-	table th, table td { text-align: left; border: 1px solid black }
-	h1, h3 { font-family: "Georgia", "Garamond",  serif; font-weight: normal;}
-	#col1 { width: 18%; }
-	#col2 { } 
-	#col3 { width: 20%} 
-	</style>
--->
-
-
 <!-- Include bootstrap -->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
