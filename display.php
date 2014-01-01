@@ -36,6 +36,7 @@ usort($stops, "sortShitOut");
 ?>
 <!doctype html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Buses from Darlaston Road</title>
 <!--
 	<style type="text/css">
@@ -58,12 +59,16 @@ usort($stops, "sortShitOut");
 
 <style type="text/css">
 /* Reset */
-body {	max-width: 700px !important; margin: 0 auto; }
+body { max-width: 700px !important; margin: 0 auto; padding: 10px; }
+#github { position: absolute; top: 0; right: 0; border: 0; }
+@media screen and (max-width: 768px) { #github { display: none; }}
 </style>
 
 </head>
 <body>
-<a href="https://github.com/lhavelund"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+<div id="github">
+<a href="https://github.com/lhavelund"><img src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
+</div>
 <h1>Buses from Darlaston Road</h1>
 <p>This website uses live data from the <a href="http://tfl.gov.uk">Transport for London</a> API.</p>
 <?php // We have our data! Now for magic...
