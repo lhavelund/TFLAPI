@@ -9,16 +9,27 @@
 	v1.0.2
 */
 
-// Establish API parameters
-$params 	= 'StopPointName=Darlaston%20Road';
-// Establish requested return content
-$returnlist	= 'StopID,StopPointName,LineID,DestinationName,DirectionID,EstimatedTime';
-// Set API URL
-$callurl 	= 'http://countdown.api.tfl.gov.uk/interfaces/ura/instant_V1?' . $params . '&returnlist=' . $returnlist;
+$cachefile = "buses.cache";
+$cachedur = 30; // Set caching time to 30 seconds
+$cachedTime = time() - filemtime($cachefile);
 
-// Acquire data.
-$data = file_get_contents($callurl);
+if(file_exists($cachefile) && time() - $cachedur < filemtime($cachefile)) {		// Check if this is pretty new or not...
+		$data = file_get_contents($cachefile);							// Just serve the cached file.
+} else {
+	$pointer = fopen($cachefile, "r+");
+	// Establish API parameters
+	$params = 'StopPointName=Darlaston%20Road';
+	// Establish requested return content
+	$returnlist	= 'StopID,StopPointName,LineID,DestinationName,DirectionID,EstimatedTime';
+	// Set API URL
+	$callurl = 'http://countdown.api.tfl.gov.uk/interfaces/ura/instant_V1?' . $params . '&returnlist=' . $returnlist;
 
+	// Acquire data.
+	$data = file_get_contents($callurl);
+
+	fwrite($pointer, $data);
+	fclose($pointer);
+}
 // Remove newlines
 $arrayfied = explode("\n", $data);
 
@@ -29,7 +40,6 @@ foreach($arrayfied as $line) {
 	$indiv = str_getcsv($line);
 	array_push($stops, $indiv);
 }
-
 
 // Set sorting algo
 
@@ -42,8 +52,7 @@ function sortShitOut($a, $b) {
 
 // Sort stops
 
-usort($stops, "sortShitOut");
-
+$sorted = usort($stops, "sortShitOut");
 ?>
 <!doctype html>
 <head>
