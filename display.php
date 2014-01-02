@@ -9,6 +9,8 @@
 	v1.0.2
 */
 
+$version = '1.0.2';
+
 $cachefile = "buses.cache";
 $cachedur = 30; // Set caching time to 30 seconds
 $cachedTime = time() - filemtime($cachefile);
@@ -65,7 +67,13 @@ $sorted = usort($stops, "sortShitOut");
 	<style type="text/css">
 		body { max-width: 700px !important; margin: 0 auto; padding: 10px; }
 		#github { position: absolute; top: 0; right: 0; border: 0; }
-		@media screen and (max-width: 768px) { #github { display: none; }}
+		#foot { color: grey; font-size: .8em; text-align: center; }
+		@media screen and (max-width: 768px) {
+			#github { display: none; }
+			h1, h3 { font-weight: bold;}
+			h1 { font-size: 1.5em; }
+			h3 { font-size: 1.2em; }
+		}
 	</style>	
 	</head>
 	<body>
@@ -139,6 +147,7 @@ $sorted = usort($stops, "sortShitOut");
 					}
 				}	
 				echo '</table>';
+				echo '<p id="foot">TFLAPI v.' . $version . '. Check it out on <a href="https://github.com/lhavelund/TFLAPI/">Github</a>.</p>';
 ?>
 </body>
 </html>
