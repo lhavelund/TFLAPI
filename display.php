@@ -20,7 +20,7 @@ if(file_exists($cachefile) && time() - $cachedur < filemtime($cachefile)) {		// 
 } else {
 	$pointer = fopen($cachefile, "r+");
 	// Establish API parameters
-	$params = 'StopPointName=Darlaston%20Road';
+	$params = 'StopPointName=Manor%20Road';
 	// Establish requested return content
 	$returnlist	= 'StopID,StopPointName,LineID,DestinationName,DirectionID,EstimatedTime';
 	// Set API URL
@@ -55,11 +55,12 @@ function sortShitOut($a, $b) {
 // Sort stops
 
 $sorted = usort($stops, "sortShitOut");
+
 ?>
 <!doctype html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Buses from Darlaston Road</title>
+	<title>Buses from Manor Road</title>
 	<!-- Include bootstrap -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
@@ -80,13 +81,13 @@ $sorted = usort($stops, "sortShitOut");
 		<div id="github">
 			<a href="https://github.com/lhavelund"><img src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
 			</div>
-			<h1>Buses from Darlaston Road</h1>
+			<h1>Buses from Manor Road</h1>
 			<p>This website uses live data from the <a href="http://tfl.gov.uk">Transport for London</a> API.</p>
 			<?php // We have our data! Now for magic..
-				echo '<h3>Buses towards Tooting Broadway</h3>';
+				echo '<h3>Buses towards West Molesey</h3>';
 				echo '<table class="table"><tr><th id="col1">Line</th><th id="col2">Destination</th><th id="col3">Arrival</th></tr>';
 				foreach($stops as $entries) { // Display buses
-					if($entries[1] == 'Darlaston Road' && $entries[4] == 1) {	// 1 = Towards Tooting
+					if($entries[2] == '19380' && $entries[4] == 1) {	// 1 = Towards Tooting
 						echo '<tr>' . "\n";
 						echo '<td>' . $entries[3] . '</td>';
 						echo '<td>' . $entries[5] . '</td>';
@@ -123,7 +124,7 @@ $sorted = usort($stops, "sortShitOut");
 				echo '<h3>Buses towards Kingston</h3>';
 				echo '<table class="table"><tr><th id="col1">Line</th><th id="col2">Destination</th><th id="col3">Arrival</th></tr>';
 				foreach($stops as $entries) { // Display buses
-					if($entries[1] == 'Darlaston Road' && $entries[4] == 2) {	// 2 = Towards Kingston
+					if($entries[2] == '19381' && $entries[4] == 2) {	// 2 = Towards Kingston
 						echo '<tr>' . "\n";
 						echo '<td>' . $entries[3] . '</td>';
 						echo '<td>' . $entries[5] . '</td>';
